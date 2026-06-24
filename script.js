@@ -25,68 +25,68 @@ const previewStepsList = document.getElementById("previewStepsList");
 const resetRecipeButton = document.getElementById("resetRecipeButton");
 
 const emptyRecipe = {
-  title: "",
-  useDescription: false,
-  description: "",
-  ingredients: [
-    { amount: "", name: "" }
-  ],
-  steps: [
-    ""
-  ]
+    title: "",
+    useDescription: false,
+    description: "",
+    ingredients: [
+        { amount: "", name: "" }
+    ],
+    steps: [
+        ""
+    ]
 };
 
 resetRecipeButton.addEventListener("click", function () {
-  clearRecipe();
+    clearRecipe();
 });
 
 useDescriptionCheckbox.addEventListener("change", function () {
-  if (useDescriptionCheckbox.checked) {
-    descriptionEditorField.style.display = "block";
-  } else {
-    descriptionEditorField.style.display = "none";
-  }
+    if (useDescriptionCheckbox.checked) {
+        descriptionEditorField.style.display = "block";
+    } else {
+        descriptionEditorField.style.display = "none";
+    }
 });
 
 generateRecipeButton.addEventListener("click", function () {
-  updateRecipePreview();
+    updateRecipePreview();
 });
 
 printRecipeButton.addEventListener("click", function () {
-  window.print();
+    window.print();
 });
 
 addPageButton.addEventListener("click", function () {
-  const existingContinuationPage = document.querySelector(".continuation-page");
+    const existingContinuationPage = document.querySelector(".continuation-page");
 
-  if (existingContinuationPage) {
-    return;
-  }
+    if (existingContinuationPage) {
+        return;
+    }
 
-  createSecondPage();
+    createSecondPage();
 });
 
 removePageButton.addEventListener("click", function () {
-  removeSecondPage();
+    removeSecondPage();
 });
 
 addIngredientButton.addEventListener("click", function () {
-  addIngredientRow();
+    addIngredientRow();
 });
 
 ingredientsEditorList.addEventListener("click", function (event) {
-  if (!event.target.classList.contains("remove-row-button")) {
-    return;
-  }
+    if (!event.target.classList.contains("remove-row-button")) {
+        return;
+    }
 
-  const ingredientRows = ingredientsEditorList.querySelectorAll(".ingredient-editor-row");
+    const ingredientRows = ingredientsEditorList.querySelectorAll(".ingredient-editor-row");
 
-  if (ingredientRows.length <= 1) {
-    return;
-  }
+    if (ingredientRows.length <= 1) {
+        return;
+    }
 
-  const row = event.target.closest(".ingredient-editor-row");
-  row.remove();
+    const row = event.target.closest(".ingredient-editor-row");
+    row.remove();
 });
 
 addStepButton.addEventListener("click", function (event) {
@@ -150,28 +150,28 @@ function removeSecondPage() {
 }
 
 function createIngredientRow(amount = "", name = "") {
-  const ingredientRow = document.createElement("div");
-  ingredientRow.classList.add("editor-row", "ingredient-editor-row");
+    const ingredientRow = document.createElement("div");
+    ingredientRow.classList.add("editor-row", "ingredient-editor-row");
 
-  ingredientRow.innerHTML = `
-    <input 
-      type="text" 
-      class="ingredient-amount-input" 
-      placeholder="Množství"
-      value="${amount}"
-    >
+    ingredientRow.innerHTML = `
+        <input 
+        type="text" 
+        class="ingredient-amount-input" 
+        placeholder="Množství"
+        value="${amount}"
+        >
 
-    <input 
-      type="text" 
-      class="ingredient-name-input" 
-      placeholder="Název suroviny"
-      value="${name}"
-    >
+        <input 
+        type="text" 
+        class="ingredient-name-input" 
+        placeholder="Název suroviny"
+        value="${name}"
+        >
 
-    <button type="button" class="remove-row-button">Odebrat</button>
-  `;
+        <button type="button" class="remove-row-button">Odebrat</button>
+    `;
 
-  return ingredientRow;
+    return ingredientRow;
 }
 
 function addIngredientRow() {
@@ -180,10 +180,10 @@ function addIngredientRow() {
 }
 
 function createStepRow(text = "") {
-  const stepRow = document.createElement("div");
-  stepRow.classList.add("editor-row", "step-editor-row");
+    const stepRow = document.createElement("div");
+    stepRow.classList.add("editor-row", "step-editor-row");
 
-  stepRow.innerHTML = `
+    stepRow.innerHTML = `
     <span class="step-editor-number">01</span>
 
     <textarea 
@@ -206,9 +206,9 @@ function addStepRow() {
 }
 
 function updateStepNumbers() {
-  const stepRows = stepsEditorList.querySelectorAll(".step-editor-row");
+    const stepRows = stepsEditorList.querySelectorAll(".step-editor-row");
 
-  stepRows.forEach(function (row, index) {
+    stepRows.forEach(function (row, index) {
     const numberElement = row.querySelector(".step-editor-number");
 
     if (!numberElement) {
@@ -231,34 +231,34 @@ function updateRecipePreview() {
 }
 
 function updatePreviewTitle() {
-  const title = recipeTitleInput.value.trim();
+    const title = recipeTitleInput.value.trim();
 
-  if (title === "") {
-    previewRecipeTitle.textContent = "Název receptu";
-    return;
-  }
+    if (title === "") {
+        previewRecipeTitle.textContent = "Název receptu";
+        return;
+    }
 
-  previewRecipeTitle.textContent = title;
+    previewRecipeTitle.textContent = title;
 }
 
 function updatePreviewDescription() {
-  const description = recipeDescriptionInput.value.trim();
+    const description = recipeDescriptionInput.value.trim();
 
-  if (!useDescriptionCheckbox.checked || description === "") {
-    previewRecipeDescription.style.display = "none";
-    return;
-  }
+    if (!useDescriptionCheckbox.checked || description === "") {
+        previewRecipeDescription.style.display = "none";
+        return;
+    }
 
-  previewRecipeDescription.style.display = "block";
-  previewRecipeDescription.textContent = description;
+    previewRecipeDescription.style.display = "block";
+    previewRecipeDescription.textContent = description;
 }
 
 function updatePreviewIngredients() {
-  const ingredientRows = ingredientsEditorList.querySelectorAll(".ingredient-editor-row");
+    const ingredientRows = ingredientsEditorList.querySelectorAll(".ingredient-editor-row");
 
-  previewIngredientsList.innerHTML = "";
+    previewIngredientsList.innerHTML = "";
 
-  ingredientRows.forEach(function (row) {
+    ingredientRows.forEach(function (row) {
     const amountInput = row.querySelector(".ingredient-amount-input");
     const nameInput = row.querySelector(".ingredient-name-input");
 
@@ -325,116 +325,116 @@ function updatePreviewSteps() {
 }
 
 function clearRecipe() {
-  recipeTitleInput.value = emptyRecipe.title;
+    recipeTitleInput.value = emptyRecipe.title;
 
-  useDescriptionCheckbox.checked = emptyRecipe.useDescription;
-  recipeDescriptionInput.value = emptyRecipe.description;
+    useDescriptionCheckbox.checked = emptyRecipe.useDescription;
+    recipeDescriptionInput.value = emptyRecipe.description;
 
-  if (emptyRecipe.useDescription) {
-    descriptionEditorField.style.display = "block";
-  } else {
-    descriptionEditorField.style.display = "none";
-  }
+    if (emptyRecipe.useDescription) {
+        descriptionEditorField.style.display = "block";
+    } else {
+        descriptionEditorField.style.display = "none";
+    }
 
-  clearIngredientsEditor();
-  clearStepsEditor();
+    clearIngredientsEditor();
+    clearStepsEditor();
 
-  removeSecondPage();
-  updateStepNumbers();
-  updateRecipePreview();
+    removeSecondPage();
+    updateStepNumbers();
+    updateRecipePreview();
 }
 
 function clearIngredientsEditor() {
-  const ingredientRows = ingredientsEditorList.querySelectorAll(".ingredient-editor-row");
+    const ingredientRows = ingredientsEditorList.querySelectorAll(".ingredient-editor-row");
 
-  ingredientRows.forEach(function (row) {
-    row.remove();
-  });
+    ingredientRows.forEach(function (row) {
+        row.remove();
+    });
 
-  emptyRecipe.ingredients.forEach(function (ingredient) {
-    const ingredientRow = createIngredientRow(ingredient.amount, ingredient.name);
-    ingredientsEditorList.insertBefore(ingredientRow, addIngredientButton);
-  });
+    emptyRecipe.ingredients.forEach(function (ingredient) {
+        const ingredientRow = createIngredientRow(ingredient.amount, ingredient.name);
+        ingredientsEditorList.insertBefore(ingredientRow, addIngredientButton);
+    });
 }
 
 function clearStepsEditor() {
-  const stepRows = stepsEditorList.querySelectorAll(".step-editor-row");
+    const stepRows = stepsEditorList.querySelectorAll(".step-editor-row");
 
-  stepRows.forEach(function (row) {
-    row.remove();
-  });
+    stepRows.forEach(function (row) {
+        row.remove();
+    });
 
-  emptyRecipe.steps.forEach(function (stepText) {
-    const stepRow = createStepRow(stepText);
-    stepsEditorList.insertBefore(stepRow, addStepButton);
-  });
+    emptyRecipe.steps.forEach(function (stepText) {
+        const stepRow = createStepRow(stepText);
+        stepsEditorList.insertBefore(stepRow, addStepButton);
+    });
 }
 
 function handlePreviewOverflow() {
-  const firstRecipeCard = document.querySelector(".page:not(.continuation-page) .recipe-card");
-  const firstStepsGrid = document.getElementById("previewStepsList");
+    const firstRecipeCard = document.querySelector(".page:not(.continuation-page) .recipe-card");
+    const firstStepsGrid = document.getElementById("previewStepsList");
 
-  if (!firstRecipeCard || !firstStepsGrid) {
-    return;
-  }
+    if (!firstRecipeCard || !firstStepsGrid) {
+        return;
+    }
 
-  setStepsGridHeight(firstRecipeCard, firstStepsGrid);
+    setStepsGridHeight(firstRecipeCard, firstStepsGrid);
 
-  const firstIngredientsSection = previewIngredientsList.closest(".section");
+    const firstIngredientsSection = previewIngredientsList.closest(".section");
 
-  const needsContinuation =
-    isElementOutsideCard(firstIngredientsSection, firstRecipeCard) ||
-    isElementOutsideCard(firstStepsGrid, firstRecipeCard) ||
-    isStepsGridOverflowing(firstStepsGrid);
+    const needsContinuation =
+        isElementOutsideCard(firstIngredientsSection, firstRecipeCard) ||
+        isElementOutsideCard(firstStepsGrid, firstRecipeCard) ||
+        isStepsGridOverflowing(firstStepsGrid);
 
-  if (!needsContinuation) {
-    updateStepsSectionVisibility(firstStepsGrid);
-    return;
-  }
+    if (!needsContinuation) {
+        updateStepsSectionVisibility(firstStepsGrid);
+        return;
+    }
 
-  createSecondPage();
+    createSecondPage();
 
-  const secondRecipeCard = document.querySelector(".continuation-page .recipe-card");
-  const previewIngredientsListPage2 = document.getElementById("previewIngredientsListPage2");
-  const previewStepsListPage2 = document.getElementById("previewStepsListPage2");
-  const previewIngredientsSectionPage2 = document.getElementById("previewIngredientsSectionPage2");
+    const secondRecipeCard = document.querySelector(".continuation-page .recipe-card");
+    const previewIngredientsListPage2 = document.getElementById("previewIngredientsListPage2");
+    const previewStepsListPage2 = document.getElementById("previewStepsListPage2");
+    const previewIngredientsSectionPage2 = document.getElementById("previewIngredientsSectionPage2");
 
-  moveOverflowContentToSecondPage(
+    moveOverflowContentToSecondPage(
+        firstRecipeCard,
+        firstStepsGrid,
+        previewIngredientsListPage2,
+        previewStepsListPage2
+    );
+
+    setStepsGridHeight(firstRecipeCard, firstStepsGrid);
+    setStepsGridHeight(secondRecipeCard, previewStepsListPage2);
+
+    updateSecondPageVisibility(previewIngredientsListPage2, previewIngredientsSectionPage2);
+}
+
+function moveOverflowContentToSecondPage(
     firstRecipeCard,
     firstStepsGrid,
     previewIngredientsListPage2,
     previewStepsListPage2
-  );
-
-  setStepsGridHeight(firstRecipeCard, firstStepsGrid);
-  setStepsGridHeight(secondRecipeCard, previewStepsListPage2);
-
-  updateSecondPageVisibility(previewIngredientsListPage2, previewIngredientsSectionPage2);
-}
-
-function moveOverflowContentToSecondPage(
-  firstRecipeCard,
-  firstStepsGrid,
-  previewIngredientsListPage2,
-  previewStepsListPage2
 ) {
-  let safetyCounter = 0;
+    let safetyCounter = 0;
 
-  const firstIngredientsSection = previewIngredientsList.closest(".section");
+    const firstIngredientsSection = previewIngredientsList.closest(".section");
 
-  /*
-    1. Suroviny přesouváme jen tehdy,
-    když samotná sekce surovin leze mimo rámeček.
-  */
-  while (
-    isElementOutsideCard(firstIngredientsSection, firstRecipeCard) &&
-    previewIngredientsList.querySelectorAll(".ingredient-row").length > 1
-  ) {
-    safetyCounter++;
+    /*
+        1. Suroviny přesouváme jen tehdy,
+        když samotná sekce surovin leze mimo rámeček.
+    */
+    while (
+        isElementOutsideCard(firstIngredientsSection, firstRecipeCard) &&
+        previewIngredientsList.querySelectorAll(".ingredient-row").length > 1
+    ) {
+        safetyCounter++;
 
-    if (safetyCounter > 100) {
-      console.warn("Přesouvání surovin bylo zastaveno.");
-      break;
+        if (safetyCounter > 100) {
+        console.warn("Přesouvání surovin bylo zastaveno.");
+        break;
     }
 
     const ingredientRows = previewIngredientsList.querySelectorAll(".ingredient-row");
@@ -448,39 +448,39 @@ function moveOverflowContentToSecondPage(
     2. Potom nastavíme výšku postupu podle místa,
     které zůstalo na první stránce.
   */
-  setStepsGridHeight(firstRecipeCard, firstStepsGrid);
+    setStepsGridHeight(firstRecipeCard, firstStepsGrid);
 
   /*
     3. Pokud přetéká postup, přesouváme pouze kroky postupu.
   */
-  while (
-    isElementOutsideCard(firstStepsGrid, firstRecipeCard) ||
-    isStepsGridOverflowing(firstStepsGrid)
-  ) {
-    safetyCounter++;
+    while (
+        isElementOutsideCard(firstStepsGrid, firstRecipeCard) ||
+        isStepsGridOverflowing(firstStepsGrid)
+    ) {
+        safetyCounter++;
 
-    if (safetyCounter > 100) {
-      console.warn("Přesouvání postupu bylo zastaveno.");
-      break;
-    }
+        if (safetyCounter > 100) {
+        console.warn("Přesouvání postupu bylo zastaveno.");
+        break;
+        }
 
-    const stepRows = previewStepsList.querySelectorAll(".step");
+        const stepRows = previewStepsList.querySelectorAll(".step");
 
-    if (stepRows.length === 0) {
-      updateStepsSectionVisibility(firstStepsGrid);
-      break;
-    }
+        if (stepRows.length === 0) {
+        updateStepsSectionVisibility(firstStepsGrid);
+        break;
+        }
 
-    const lastStep = stepRows[stepRows.length - 1];
-    const firstStepOnSecondPage = previewStepsListPage2.querySelector(".step");
+        const lastStep = stepRows[stepRows.length - 1];
+        const firstStepOnSecondPage = previewStepsListPage2.querySelector(".step");
 
-    previewStepsListPage2.insertBefore(lastStep, firstStepOnSecondPage);
+        previewStepsListPage2.insertBefore(lastStep, firstStepOnSecondPage);
 
-    setStepsGridHeight(firstRecipeCard, firstStepsGrid);
+        setStepsGridHeight(firstRecipeCard, firstStepsGrid);
   }
 
-  updateStepsSectionVisibility(firstStepsGrid);
-  updateStepsSectionVisibility(previewStepsListPage2);
+    updateStepsSectionVisibility(firstStepsGrid);
+    updateStepsSectionVisibility(previewStepsListPage2);
 }
 
 function updateSecondPageVisibility(
@@ -498,35 +498,35 @@ function updateSecondPageVisibility(
 }
 
 function updateStepsGridHeight(recipeCard, stepsGrid) {
-  if (!recipeCard || !stepsGrid) {
-    return;
-  }
+    if (!recipeCard || !stepsGrid) {
+        return;
+    }
 
-  const cardRect = recipeCard.getBoundingClientRect();
-  const stepsRect = stepsGrid.getBoundingClientRect();
+    const cardRect = recipeCard.getBoundingClientRect();
+    const stepsRect = stepsGrid.getBoundingClientRect();
 
-  const availableHeight = cardRect.bottom - stepsRect.top;
+    const availableHeight = cardRect.bottom - stepsRect.top;
 
-  stepsGrid.style.height = `${Math.max(availableHeight, 80)}px`;
+    stepsGrid.style.height = `${Math.max(availableHeight, 80)}px`;
 }
 
 function isStepsGridOverflowing(stepsGrid) {
-  if (!stepsGrid) {
-    return false;
-  }
+    if (!stepsGrid) {
+        return false;
+    }
 
-  return stepsGrid.scrollWidth > stepsGrid.clientWidth + 1;
+    return stepsGrid.scrollWidth > stepsGrid.clientWidth + 1;
 }
 
 function isElementOverflowing(element) {
-  if (!element) {
-    return false;
-  }
+    if (!element) {
+        return false;
+    }
 
-  return (
-    element.scrollHeight > element.clientHeight + 1 ||
-    element.scrollWidth > element.clientWidth + 1
-  );
+    return (
+        element.scrollHeight > element.clientHeight + 1 ||
+        element.scrollWidth > element.clientWidth + 1
+    );
 }
 
 function isElementOutsideCard(element, card) {
@@ -541,88 +541,88 @@ function isElementOutsideCard(element, card) {
 }
 
 function isFirstPageOverflowing(firstRecipeCard, firstStepsGrid) {
-  return (
-    isElementOverflowing(firstRecipeCard) ||
-    isElementOverflowing(firstStepsGrid) ||
-    isRecipeCardTooTall(firstRecipeCard)
-  );
+    return (
+        isElementOverflowing(firstRecipeCard) ||
+        isElementOverflowing(firstStepsGrid) ||
+        isRecipeCardTooTall(firstRecipeCard)
+    );
 }
 
 function isContentOutsideCard(card) {
-  if (!card) {
+    if (!card) {
+        return false;
+    }
+
+    const cardRect = card.getBoundingClientRect();
+
+    const contentElements = card.querySelectorAll(
+        ".header, .section, .ingredients-list, .steps-grid, .step, .ingredient-row"
+    );
+
+    for (const element of contentElements) {
+        const elementRect = element.getBoundingClientRect();
+
+        if (elementRect.bottom > cardRect.bottom + 1) {
+        return true;
+        }
+
+        if (elementRect.right > cardRect.right + 1) {
+        return true;
+        }
+    }
+
     return false;
-  }
-
-  const cardRect = card.getBoundingClientRect();
-
-  const contentElements = card.querySelectorAll(
-    ".header, .section, .ingredients-list, .steps-grid, .step, .ingredient-row"
-  );
-
-  for (const element of contentElements) {
-    const elementRect = element.getBoundingClientRect();
-
-    if (elementRect.bottom > cardRect.bottom + 1) {
-      return true;
-    }
-
-    if (elementRect.right > cardRect.right + 1) {
-      return true;
-    }
-  }
-
-  return false;
 }
 
 function isRecipeCardTooTall(recipeCard) {
-  if (!recipeCard) {
-    return false;
-  }
+    if (!recipeCard) {
+        return false;
+    }
 
-  const expectedHeight = recipeCard.clientHeight;
-  const realContentHeight = recipeCard.scrollHeight;
+    const expectedHeight = recipeCard.clientHeight;
+    const realContentHeight = recipeCard.scrollHeight;
 
-  return realContentHeight > expectedHeight + 1;
+    return realContentHeight > expectedHeight + 1;
 }
 
 function setStepsGridHeight(recipeCard, stepsGrid) {
-  if (!recipeCard || !stepsGrid) {
-    return;
-  }
+    if (!recipeCard || !stepsGrid) {
+        return;
+    }
 
-  const cardRect = recipeCard.getBoundingClientRect();
-  const stepsRect = stepsGrid.getBoundingClientRect();
+    const cardRect = recipeCard.getBoundingClientRect();
+    const stepsRect = stepsGrid.getBoundingClientRect();
 
-  const bottomReserve = 12;
-  const availableHeight = cardRect.bottom - stepsRect.top - bottomReserve;
+    const bottomReserve = 12;
+    const availableHeight = cardRect.bottom - stepsRect.top - bottomReserve;
 
-  stepsGrid.style.height = `${Math.max(availableHeight, 0)}px`;
+    stepsGrid.style.height = `${Math.max(availableHeight, 0)}px`;
 }
 
 function isStepsGridOverflowing(stepsGrid) {
-  if (!stepsGrid) {
-    return false;
-  }
+    if (!stepsGrid) {
+        return false;
+    }
 
-  return (
-    stepsGrid.scrollWidth > stepsGrid.clientWidth + 1 ||
-    stepsGrid.scrollHeight > stepsGrid.clientHeight + 1
-  );
+    return (
+        stepsGrid.scrollWidth > stepsGrid.clientWidth + 1 ||
+        stepsGrid.scrollHeight > stepsGrid.clientHeight + 1
+    );
 }
 
 function updateStepsSectionVisibility(stepsGrid) {
-  if (!stepsGrid) {
-    return;
-  }
+    if (!stepsGrid) {
+        return;
+    }
 
-  const section = stepsGrid.closest(".section-steps");
-  const hasSteps = stepsGrid.querySelectorAll(".step").length > 0;
+    const section = stepsGrid.closest(".section-steps");
+    const hasSteps = stepsGrid.querySelectorAll(".step").length > 0;
 
-  if (!section) {
-    return;
-  }
+    if (!section) {
+        return;
+    }
 
-  section.style.display = hasSteps ? "block" : "none";
+    section.style.display = hasSteps ? "block" : "none";
 }
 
 clearRecipe();
