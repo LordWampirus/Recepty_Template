@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>Šablona na Recepty</title>
+</head>
+<body>
+
+    <!--
+    <div class="controls no-print">
+        <button id="addPageButton">Přidat druhou stránku</button>
+        <button id="removePageButton">Odebrat druhou stránku</button>
+    </div>
+    -->
+    
+    <section class="editor no-print">
+
+        <header class="editor-header">
+            <h2>Editor receptu</h2>
+            <!--
+            <p>
+            Vyplň recept a potom z něj vygenerujeme čistou tiskovou šablonu.
+            </p>
+            -->
+        </header>
+
+        <div class="editor-card">
+
+            <div class="editor-field">
+            <label for="recipeTitleInput">Název receptu</label>
+            <input 
+                type="text" 
+                id="recipeTitleInput" 
+                placeholder="Název receptu"
+            >
+            </div>
+
+            <div class="editor-field editor-checkbox-field">
+            <label>
+                <input type="checkbox" id="useDescriptionCheckbox" checked>
+                Použít popis receptu
+            </label>
+            </div>
+
+            <div class="editor-field" id="descriptionEditorField">
+            <label for="recipeDescriptionInput">Popis receptu</label>
+            <textarea 
+                id="recipeDescriptionInput" 
+                rows="4" 
+                placeholder="Krátký úvod k receptu..."
+            ></textarea>
+            </div>
+
+            <section class="editor-section">
+            <div class="editor-section-header">
+                <h3>Suroviny</h3>
+            </div>
+
+            <div id="ingredientsEditorList" class="editor-list">
+
+                <div class="editor-row ingredient-editor-row">
+                    <input 
+                        type="text" 
+                        class="ingredient-amount-input" 
+                        placeholder="Množství"
+                    >
+
+                    <input 
+                        type="text" 
+                        class="ingredient-name-input" 
+                        placeholder="Název suroviny"
+                    >
+
+                    <button type="button" class="remove-row-button">Odebrat</button>
+                </div>
+
+                <button type="button" id="addIngredientButton" class="add-row-button">
+                    + Přidat surovinu
+                </button>
+
+            </div>
+            </section>
+
+            <section class="editor-section">
+            <div class="editor-section-header">
+                <h3>Postup</h3>
+            </div>
+
+            <div id="stepsEditorList" class="editor-list">
+
+                <div class="editor-row step-editor-row">
+                    <span class="step-editor-number">01</span>
+
+                    <textarea 
+                        class="step-text-input" 
+                        rows="3" 
+                        placeholder="Text kroku..."
+                    ></textarea>
+
+                    <button type="button" class="remove-row-button">Odebrat</button>
+                </div>
+
+                <button type="button" id="addStepButton" class="add-row-button">
+                    + Přidat krok
+                </button>
+
+            </div>
+            </section>
+
+            <div class="editor-actions">
+            <button type="button" id="generateRecipeButton">
+                Aktualizovat náhled
+            </button>
+
+            <button type="button" id="printRecipeButton">
+                Tisk / Uložit jako PDF
+            </button>
+
+                <button type="button" id="resetRecipeButton">
+                    Nový recept
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <div id="pagesContainer">
+
+        <main class="page">
+
+            <article class="recipe-card">
+
+                <header class="header" id="previewHeader">
+                    <h1 class="recipe-title" id="previewRecipeTitle">
+                        Název receptu
+                    </h1>
+                    <p class="recipe-description" id="previewRecipeDescription"></p>
+                </header>
+
+                <section class="section">
+                    <h2 class="section-title">Suroviny</h2>
+                    <div class="ingredients-list" id="previewIngredientsList"></div> 
+                </section>
+
+                <section class="section">
+                    <div class="steps-grid" id="previewStepsList">
+                        <h2 class="section-title steps-title">Postup</h2>
+                    </div>
+                </section>
+
+            </article>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

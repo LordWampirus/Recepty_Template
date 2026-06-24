@@ -1,0 +1,413 @@
+body {
+    margin: 0;
+    background: #ddd;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.recipe-description,
+.ingredient-row,
+.step {
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.recipe-title {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 34px;
+    line-height: 0.95;
+    font-weight: 900;
+    text-transform: uppercase;
+    max-width: 650px;
+    margin: 0 0 18px;
+    letter-spacing: -1px;
+}
+
+.recipe-description {
+    font-size: 16px;
+    line-height: 1.35;
+    max-width: 560px;
+    margin-bottom: 28px;
+}
+
+.section-title {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 900;
+    margin: 0 0 18px;
+    letter-spacing: -1px;
+}
+
+.header {
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 22px;
+}
+
+.ingredients {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+}
+
+.ingredients-list {
+  border: 1px solid #000;
+  margin-bottom: 32px;
+}
+
+.ingredient-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  border-bottom: 1px solid #000;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.ingredient-row:last-child {
+  border-bottom: none;
+}
+
+.ingredient-amount {
+    padding: 5px 6px 5px 10px;
+    font-weight: 700;
+    border-right: 1px solid #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ingredient-amount:empty::before {
+  content: "\00a0";
+}
+
+.ingredient-name {
+    padding: 5px 10px;
+    min-width: 0;    
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.ingredient-amount,
+.ingredient-name {
+  display: flex;
+  align-items: center;
+}
+
+.steps {
+    column-count: 2;
+    column-gap: 40px;
+    font-size: 15px;
+    line-height: 1.3;
+}
+
+.step {
+  break-inside: auto;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.step-number {
+    display: block;
+    font-weight: 800;
+    margin: 0 0 1px;
+    padding: 0;
+    line-height: 1;
+}
+
+.step-text {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.controls {
+  width: 210mm;
+  margin: 20px auto 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.controls button {
+  padding: 8px 14px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.continuation-header {
+  border-bottom: 1.5px solid #000;
+  padding-bottom: 12px;
+  margin-bottom: 22px;
+}
+
+.continuation-title {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.editor {
+  width: 210mm;
+  margin: 20px auto;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.editor-header {
+  margin-bottom: 12px;
+}
+
+.editor-header h2 {
+  margin: 0 0 4px;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.editor-header p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.editor-card {
+  border: 1.5px solid #000;
+  background: white;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.editor-field {
+  margin-bottom: 16px;
+}
+
+.editor-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.editor-field input[type="text"],
+.editor-field textarea,
+.editor-row input[type="text"],
+.editor-row textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  padding: 7px 9px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.editor-checkbox-field label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.editor-section {
+  border-top: 1.5px solid #000;
+  padding-top: 14px;
+  margin-top: 18px;
+}
+
+.editor-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.editor-section-header h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.8px;
+}
+
+.editor-section-header button,
+.editor-actions button,
+.remove-row-button {
+  border: 1px solid #000;
+  background: white;
+  padding: 7px 10px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.editor-section-header button:hover,
+.editor-actions button:hover,
+.remove-row-button:hover,
+.add-row-button:hover {
+  background: #eee;
+}
+
+.editor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editor-row {
+  display: grid;
+  gap: 8px;
+  align-items: start;
+}
+
+.ingredient-editor-row {
+  grid-template-columns: 90px 1fr auto;
+}
+
+.step-editor-row {
+  grid-template-columns: 40px 1fr auto;
+}
+
+.step-editor-number {
+  border: 1px solid #000;
+  padding: 7px 0;
+  text-align: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.editor-actions {
+  border-top: 1.5px solid #000;
+  margin-top: 18px;
+  padding-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.editor-actions button {
+  font-weight: 700;
+}
+
+.add-row-button {
+  border: 1px dashed #000;
+  background: white;
+  padding: 8px 10px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.recipe-description,
+.ingredient-name {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.page {
+  width: 210mm !important;
+  height: 297mm !important;
+  min-height: 297mm !important;
+  max-height: 297mm !important;
+
+  margin: 20px auto !important;
+  padding: 12mm !important;
+  box-sizing: border-box !important;
+
+  background: white;
+  position: relative;
+  overflow: hidden !important;
+}
+
+.recipe-card {
+  width: 100% !important;
+  height: 273mm !important;
+  min-height: 273mm !important;
+  max-height: 273mm !important;
+
+  border: 1.5px solid #000;
+  padding: 10mm !important;
+  box-sizing: border-box !important;
+
+  overflow: hidden !important;
+}
+
+.steps-grid {
+  column-count: 2;
+  column-gap: 36px;
+  column-fill: auto;
+  overflow: hidden;
+}
+
+#pagesContainer {
+  width: 210mm;
+  margin: 0 auto;
+}
+
+.page {
+  display: block;
+}
+
+.page + .page {
+  margin-top: 20px;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  #pagesContainer {
+    width: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .page {
+    width: 210mm !important;
+    height: 296mm !important;
+    min-height: 296mm !important;
+    max-height: 296mm !important;
+
+    margin: 0 !important;
+    padding: 12mm !important;
+    box-sizing: border-box !important;
+
+    overflow: hidden !important;
+
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  .page + .page {
+    margin-top: 0 !important;
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  .recipe-card {
+    height: 272mm !important;
+    min-height: 272mm !important;
+    max-height: 272mm !important;
+
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+}
+
