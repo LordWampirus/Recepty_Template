@@ -100,8 +100,6 @@ Projekt je zatím jednoduchá lokální šablona. Aktuálně neobsahuje:
 * načítání receptů ze souboru,
 * databázi receptů,
 * obrázky receptů,
-* přihlašování,
-* online verzi.
 
 ## Možná budoucí rozšíření
 
@@ -115,7 +113,7 @@ Do budoucna je možné přidat:
 * obrázek receptu,
 * lepší vícestránkové zalamování,
 * export více receptů najednou,
-* desktopovou aplikaci přes Electron.
+* desktopovou aplikaci.
 
 ## Poznámka
 
