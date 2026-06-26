@@ -56,6 +56,7 @@ printRecipeButton.addEventListener("click", function () {
     window.print();
 });
 
+/*
 addPageButton.addEventListener("click", function () {
     const existingContinuationPage = document.querySelector(".continuation-page");
 
@@ -69,6 +70,7 @@ addPageButton.addEventListener("click", function () {
 removePageButton.addEventListener("click", function () {
     removeSecondPage();
 });
+*/
 
 addIngredientButton.addEventListener("click", function () {
     addIngredientRow();

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
+
 body {
     margin: 0;
     background: #ddd;
@@ -353,6 +355,270 @@ body {
 
 .page + .page {
     margin-top: 20px;
+}
+
+/* ============================= */
+/* VIZUÁLNÍ STYL EDITORU RECEPTU */
+/* ============================= */
+
+:root {
+    --editor-bg: #f7efe4;
+    --editor-card-bg: #fffaf6;
+    --editor-card-bg-soft: #fbf4ea;
+
+    --editor-text: #1f1b18;
+    --editor-muted: #6f6258;
+
+    --editor-border: #ead8c4;
+    --editor-border-strong: #d9c2aa;
+
+    --editor-primary: #d94b27;
+    --editor-primary-hover: #bf3e1f;
+
+    --editor-green: #5d7042;
+    --editor-green-hover: #4e6037;
+
+    --editor-radius-sm: 10px;
+    --editor-radius-md: 14px;
+    --editor-radius-lg: 22px;
+
+    --editor-shadow: 0 12px 32px rgba(70, 42, 22, 0.08);
+    --editor-shadow-soft: 0 6px 18px rgba(70, 42, 22, 0.06);
+
+    --font-heading: "Playfair Display", Georgia, serif;
+    --font-body: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* Celkové pozadí stránky v běžném zobrazení */
+body {
+    background:
+        radial-gradient(circle at top left, rgba(217, 75, 39, 0.08), transparent 30%),
+        linear-gradient(180deg, #fbf3e8 0%, #f4eadc 100%);
+    color: var(--editor-text);
+    font-family: var(--font-body);
+}
+
+/* Editor */
+.editor {
+    font-family: var(--font-body);
+    color: var(--editor-text);
+}
+
+/* Nadpis editoru */
+.editor-header {
+    margin-bottom: 16px;
+}
+
+.editor-header h2 {
+    font-family: var(--font-heading);
+    color: var(--editor-text);
+    font-size: 36px;
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+}
+
+/* Hlavní karta editoru */
+.editor-card {
+    border: 1px solid var(--editor-border);
+    background: rgba(255, 250, 246, 0.96);
+    border-radius: var(--editor-radius-lg);
+    box-shadow: var(--editor-shadow);
+    padding: 22px;
+}
+
+/* Popisky polí */
+.editor-field label {
+    color: var(--editor-text);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* Textboxy, inputy a textarea */
+.editor-field input[type="text"],
+.editor-field textarea,
+.editor-row input[type="text"],
+.editor-row textarea {
+    border: 1px solid var(--editor-border);
+    background: #fffdf9;
+    color: var(--editor-text);
+    border-radius: var(--editor-radius-md);
+    padding: 10px 12px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.4;
+    outline: none;
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background-color 0.18s ease;
+}
+
+.editor-field input[type="text"]::placeholder,
+.editor-field textarea::placeholder,
+.editor-row input[type="text"]::placeholder,
+.editor-row textarea::placeholder {
+    color: #a49386;
+}
+
+/* Zvýraznění aktivního pole */
+.editor-field input[type="text"]:focus,
+.editor-field textarea:focus,
+.editor-row input[type="text"]:focus,
+.editor-row textarea:focus {
+    border-color: var(--editor-primary);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(217, 75, 39, 0.12);
+}
+
+/* Checkbox řádek */
+.editor-checkbox-field label {
+    color: var(--editor-muted);
+    font-weight: 600;
+}
+
+/* Sekce Suroviny / Postup */
+.editor-section {
+    border-top: 1px solid var(--editor-border);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(251, 244, 234, 0.5));
+    border-radius: var(--editor-radius-lg);
+    padding: 18px;
+    margin-top: 22px;
+}
+
+/* Nadpisy sekcí */
+.editor-section-header h3 {
+    font-family: var(--font-heading);
+    color: var(--editor-text);
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+/* Seznam řádků */
+.editor-list {
+    gap: 10px;
+}
+
+/* Řádky surovin a kroků */
+.editor-row {
+    background: #fffdf9;
+    border: 1px solid var(--editor-border);
+    border-radius: var(--editor-radius-md);
+    padding: 8px;
+    box-shadow: var(--editor-shadow-soft);
+}
+
+/* Číslo kroku */
+.step-editor-number {
+    border: 1px solid var(--editor-border-strong);
+    background: #f3e7d8;
+    color: var(--editor-text);
+    border-radius: var(--editor-radius-sm);
+    font-family: var(--font-body);
+    font-weight: 800;
+}
+
+/* Společný styl běžných tlačítek */
+.editor-section-header button,
+.editor-actions button,
+.remove-row-button {
+    border: 1px solid var(--editor-border);
+    background: #fffdf9;
+    color: var(--editor-text);
+    border-radius: var(--editor-radius-md);
+    padding: 9px 13px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.12s ease,
+        box-shadow 0.18s ease;
+}
+
+/* Hover pro běžná tlačítka */
+.editor-section-header button:hover,
+.editor-actions button:hover,
+.remove-row-button:hover {
+    background: #f7efe4;
+    border-color: var(--editor-border-strong);
+    box-shadow: var(--editor-shadow-soft);
+}
+
+/* Odebrat tlačítka - jemně upozornit, ale neřvát */
+.remove-row-button {
+    color: #8d3a29;
+}
+
+/* Výrazná tlačítka Přidat surovinu / Přidat krok */
+.add-row-button {
+    border: none;
+    background: linear-gradient(135deg, var(--editor-primary), #c93f20);
+    color: #ffffff;
+    border-radius: var(--editor-radius-md);
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 10px 24px rgba(217, 75, 39, 0.24);
+    transition:
+        background-color 0.18s ease,
+        transform 0.12s ease,
+        box-shadow 0.18s ease;
+}
+
+.add-row-button:hover {
+    background: linear-gradient(135deg, var(--editor-primary-hover), #aa3218);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(217, 75, 39, 0.3);
+}
+
+.add-row-button:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(217, 75, 39, 0.22);
+}
+
+/* Spodní akce editoru */
+.editor-actions {
+    border-top: 1px solid var(--editor-border);
+    margin-top: 22px;
+    padding-top: 18px;
+}
+
+/* Hlavní akční tlačítko Aktualizovat náhled */
+#generateRecipeButton {
+    background: var(--editor-green);
+    color: #ffffff;
+    border-color: var(--editor-green);
+}
+
+#generateRecipeButton:hover {
+    background: var(--editor-green-hover);
+    border-color: var(--editor-green-hover);
+    color: #ffffff;
+}
+
+/* Tisk necháme jako světlé tlačítko */
+#printRecipeButton {
+    background: #fffdf9;
+}
+
+/* Nový recept trochu varovnější */
+#resetRecipeButton {
+    color: #8d3a29;
+}
+
+/* Jemnější vzhled náhledu stránky v editoru, ne tisk */
+.page {
+    box-shadow: 0 12px 35px rgba(70, 42, 22, 0.10);
 }
 
 @page {
